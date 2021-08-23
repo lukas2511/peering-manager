@@ -1,5 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 
+from extras.api.serializers import IXAPINestedSerializer
 from net.api.serializers import ConnectionNestedSerializer
 from peering.models import (
     AutonomousSystem,
@@ -183,6 +184,7 @@ class DirectPeeringSessionSerializer(
 
 
 class InternetExchangeSerializer(TaggedObjectSerializer, WriteEnabledNestedSerializer):
+    ix_api_endpoint = IXAPINestedSerializer(required=False)
     local_autonomous_system = AutonomousSystemNestedSerializer()
     import_routing_policies = RoutingPolicyNestedSerializer(many=True, required=False)
     export_routing_policies = RoutingPolicyNestedSerializer(many=True, required=False)
@@ -193,6 +195,7 @@ class InternetExchangeSerializer(TaggedObjectSerializer, WriteEnabledNestedSeria
         fields = [
             "id",
             "peeringdb_ixlan",
+            "ix_api_endpoint",
             "local_autonomous_system",
             "name",
             "slug",
