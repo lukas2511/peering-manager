@@ -17,6 +17,7 @@ router.APIRootView = ExtrasRootView
 
 router.register("_choices", views.ExtrasFieldChoicesViewSet, basename="field-choice")
 
+router.register("ix-api", views.IXAPIViewSet)
 router.register("job-results", views.JobResultViewSet)
 router.register("webhooks", views.WebhookViewSet)
 
